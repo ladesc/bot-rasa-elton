@@ -73,8 +73,8 @@ export default function Chat() {
     
 
     return (
-        <main className='flex justify-center h-screen items-center bg-black text-white'>
-            <div className='flex flex-col w-1/4 h-1/2  rounded-md bg-emerald-500 p-2'>
+        <main className="text-white h-screen w-screen">
+            <div className='flex flex-col bg-emerald-500 p-2 h-full w-full'>
                 <div className='flex flex-col-reverse overflow-y-auto no-scrollbar h-full w-full  border-gray-500 bg-white border-b-0' >
                     {chat.toReversed().map((user,key) => (
                         <div className='flex flex-col p-4' key={key}>
@@ -95,4 +95,22 @@ export default function Chat() {
                             }
                         </div>
                     ))}
-                </di
+                </div>
+                
+                <form className='flex justify-between items-center bg-white p-4'  onSubmit={handleSubmit}>
+                    <textarea rows={1} className=' w-5/6 h-14 rounded-lg  bg-slate-800 p-2 outline-none no-scrollbar resize-none' onChange={e => setMessage(e.target.value)} value={message}></textarea>
+
+                    <button type="submit" className="flex justify-center items-center w-10 h-10 bg-blue-500  aspect-square rounded-full" >
+                        <Image
+                            alt=""
+                            width={10}
+                            height={10}
+                            src={send}
+                            className=' w-2/4 text-white'
+                        />
+                    </button>
+                </form> 
+            </div>
+        </main>
+    )
+}
