@@ -89,3 +89,14 @@ stories:
       are you a bot?
     intent: bot_challenge
   - action: utter_iamabot
+
+- story: find location
+  steps:
+  - user: |
+      Olá
+    intent: greet
+  - action: utter_iamabot
+  - user: |
+      Onde fica o restaurante?
+    intent: ask_for_location
+  - action: utter_cant_help

@@ -3,51 +3,48 @@ version: "3.1"
 nlu:
 - intent: greet
   examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
+    - Oi
+    - Ola
+    - Ola, Tudo bem?
+    - Oi, Como vai?
+    - Oi, Como posso ajudar?
+    - Oi, Como posso te ajudar?
+    - Oi, Como posso te ajudar hoje?
+    - Olá, Como posso te ajudar hoje?
+    - Olá, Como posso te ajudar?
+    - Bom dia
+    - Boa tarde
+    - Boa noite
 
 - intent: goodbye
   examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
+    - tchau
+    - até mais
+    - até logo
+    - até a próxima
+    - até breve
+    - tenha um bom dia
+    - tenha uma boa tarde
+    - tenha uma boa noite
     - see you later
 
 - intent: affirm
   examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
+    - sim
+    - s
+    - isso mesmo
+    - claro
+    - é isso
+    - é isso mesmo
+    - correto
 
 - intent: deny
   examples: |
-    - no
+    - não
     - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
+    - não exatamente
+    - não mesmo
+    - não é isso
 
 - intent: mood_great
   examples: |
@@ -89,3 +86,25 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+- intent: ask_for_help
+  examples: |
+    - preciso de ajuda
+    - pode me ajudar?
+    - pode me ajudar por favor?
+    - pode me ajudar por favor
+    - preciso de ajuda por favor
+    - preciso de ajuda
+    - gostaria de ajuda
+
+- intent: ask_for_location
+  examples: |
+    - onde fica o [Bloco N](location)?
+    - onde posso encontrar o [DEG](location)?
+    - onde fica o [RU](location) por favor?
+    - sabe onde posso encontrar o [Bloco A](location)?
+    - Onde encontro o [Auditorio Central](location)?
+    - Como chego no [CA da Computação](location)?
+    - Onde tem [Banheiro](location)?
+    - Gostaria de ir para o [Bloco P](location)
+    - Gostaria de encontrar o [Bloco N](location)

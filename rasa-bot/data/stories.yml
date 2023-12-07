@@ -28,3 +28,12 @@ stories:
   - action: utter_did_that_help
   - intent: deny
   - action: utter_goodbye
+
+- story: location path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_for_location
+    entities:
+    - location: São Paulo
+  - action: utter_cant_help

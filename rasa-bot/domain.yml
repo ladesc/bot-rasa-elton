@@ -8,8 +8,32 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - ask_for_location
+
+entities:
+  - location
+
+slots:
+  location:
+    type: text
+    initial_value: Lugar
+    mappings:
+      - type: from_entity
+        entity: location
+        intent: ask_for_location
+
+location:
+  type: any
+  mappings:
+    - type: from_entity
+      entity: location
+      intent: ask_for_location
+
 
 responses:
+  utter_cant_help:
+  - text: "Me desculpe, não sei onde fica o {location}."
+
   utter_greet:
   - text: "Hey! How are you?"
 
