@@ -36,4 +36,4 @@ stories:
   - intent: ask_for_location
     entities:
     - location: São Paulo
-  - action: utter_cant_help
+  - action: action_get_local

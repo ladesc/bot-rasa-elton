@@ -9,6 +9,7 @@ intents:
   - mood_unhappy
   - bot_challenge
   - ask_for_location
+  - ask_for_help
 
 entities:
   - location
@@ -52,6 +53,9 @@ responses:
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
+
+actions:
+  - action_get_local
 
 session_config:
   session_expiration_time: 60

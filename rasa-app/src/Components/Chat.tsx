@@ -2,7 +2,6 @@
 
 import { FormEvent, useState } from "react"
 import Image from "next/image"
-import send from  "../../public/send.svg"
 
 
 export default function Chat() {
@@ -22,12 +21,12 @@ export default function Chat() {
     const rasaAPI = async function handleClick(name: string, msg: string) {
         
 
-          await fetch('http://localhost:5005/webhooks/rest/webhook', {
+        await fetch('http://localhost:5005/webhooks/rest/webhook', {
             method: 'POST',
             headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-              'charset':'UTF-8',
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'charset':'UTF-8',
             },
             credentials: "same-origin",
             body: JSON.stringify({ "sender": name, "message": msg }),
@@ -35,15 +34,23 @@ export default function Chat() {
         .then(response => response.json())
         .then((response) => {
             if(response){
+
+                console.log(response)
+
+                const msgs = response.map((msg:any) => msg.text).join('\n')
+
+                console.log(msgs)
+
                 const temp = response[0]
                 const recipient_id = temp["recipient_id"]
-                const recipient_msg = temp["text"]
+                const recipient_msg = msgs
 
                 const response_temp = {sender: "bot", id : recipient_id, msg: recipient_msg}
                 
                 setbotTyping(false);
 
                 setChat(chat => [...chat, response_temp])
+
             }
             else{
                 window.alert("Please enter valid message");
@@ -83,7 +90,7 @@ export default function Chat() {
                                     
                                     <div className='self-start  rounded-lg w-3/4 p-2 bg-green-400'>
                                         <h6 className='text-xs'>{user.sender}</h6>
-                                        <h5 className="botmsg p-2">{user.msg}</h5>
+                                        <h5 className="botmsg p-2 break-words"><pre>{user.msg}</pre></h5>
                                     </div>
                                 
                                 )
@@ -105,7 +112,7 @@ export default function Chat() {
                             alt=""
                             width={10}
                             height={10}
-                            src={send}
+                            src="/send.svg"
                             className=' w-2/4 text-white'
                         />
                     </button>

@@ -1,27 +1,17 @@
-# This files contains your custom actions which can be used to run
-# custom Python code.
-#
-# See this guide on how to implement these action:
-# https://rasa.com/docs/rasa/custom-actions
+import requests
+from typing import Text, Dict, Any, List
+from rasa_sdk import Action
+from rasa_sdk.events import SlotSet
 
+class ActionGetLocasl(Action):
+  def name(self) -> Text:
+    return "action_get_local"
 
-# This is a simple example for a custom action which utters "Hello World!"
-
-# from typing import Any, Text, Dict, List
-#
-# from rasa_sdk import Action, Tracker
-# from rasa_sdk.executor import CollectingDispatcher
-#
-#
-# class ActionHelloWorld(Action):
-#
-#     def name(self) -> Text:
-#         return "action_hello_world"
-#
-#     def run(self, dispatcher: CollectingDispatcher,
-#             tracker: Tracker,
-#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-#
-#         dispatcher.utter_message(text="Hello World!")
-#
-#         return []
+  async def run(self, dispatcher, tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+    url = "http://localhost:8080/locals/" + tracker.get_slot("location") 
+    response = requests.get(url)
+    local = response.json()
+    dispatcher.utter_message(text="Você pode encontrar esse local em:")
+    dispatcher.utter_message(text=local['name'])
+    dispatcher.utter_message(text=local['mapsLink'])
+    return []
